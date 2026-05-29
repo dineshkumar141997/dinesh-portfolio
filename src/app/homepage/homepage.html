@@ -26,6 +26,13 @@
           [class.nav-link--active]="isActiveNav('contact')"
           [attr.aria-current]="isActiveNav('contact') ? 'true' : null"
           (click)="onNavActivate('contact')">Contact</a>
+        <button
+          type="button"
+          class="nav-cta theme-toggle"
+          (click)="toggleTheme()"
+          [attr.aria-label]="theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'">
+          {{ theme() === 'dark' ? '☀' : '🌙' }}
+        </button>
       </nav>
     </header>
   

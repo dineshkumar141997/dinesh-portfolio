@@ -4,6 +4,53 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: dark light;
+  --app-bg: #0b0d12;
+  --app-fg: #e8eaef;
+  --app-fg-soft: #c4cad8;
+  --app-fg-muted: #8b95a8;
+  --app-border: rgb(255 255 255 / 0.08);
+  --app-surface: rgb(255 255 255 / 0.06);
+  --app-surface-soft: rgb(255 255 255 / 0.04);
+  --app-chip-bg: rgb(0 0 0 / 0.25);
+  --accent: #6366f1;
+  --accent-strong: #4f46e5;
+  --accent-soft: #a5b4fc;
+  --accent-rgb: 99 102 241;
+  --accent-sky-rgb: 14 165 233;
+}
+
+:root[data-theme='light'] {
+  --app-bg: #ffffff;
+  --app-fg: #111827;
+  --app-fg-soft: #374151;
+  --app-fg-muted: #6b7280;
+  --app-border: rgb(15 23 42 / 0.1);
+  --app-surface: rgb(79 70 229 / 0.08);
+  --app-surface-soft: rgb(99 102 241 / 0.06);
+  --app-chip-bg: rgb(79 70 229 / 0.12);
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-soft: #4338ca;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --app-bg: #ffffff;
+    --app-fg: #111827;
+    --app-fg-soft: #374151;
+    --app-fg-muted: #6b7280;
+    --app-border: rgb(15 23 42 / 0.1);
+    --app-surface: rgb(79 70 229 / 0.08);
+    --app-surface-soft: rgb(99 102 241 / 0.06);
+    --app-chip-bg: rgb(79 70 229 / 0.12);
+    --accent: #4f46e5;
+    --accent-strong: #4338ca;
+    --accent-soft: #4338ca;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -11,8 +58,8 @@ html {
 body {
   margin: 0;
   font-family: 'DM Sans', system-ui, sans-serif;
-  background: #0b0d12;
-  color: #e8eaef;
+  background: var(--app-bg);
+  color: var(--app-fg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }

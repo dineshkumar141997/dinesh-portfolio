@@ -25,6 +25,7 @@ interface Project {
 export class Homepage {
   private readonly doc = inject(DOCUMENT);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly themeStorageKey = 'portfolio-theme';
 
   /** Section order matters: last section whose top is above the offset wins while scrolling. */
   private readonly navSectionIds: readonly NavSectionId[] = [
@@ -35,6 +36,7 @@ export class Homepage {
   ];
 
   readonly activeNav = signal<NavSectionId | null>(null);
+  readonly theme = signal<'dark' | 'light'>('dark');
   readonly year = new Date().getFullYear();
   readonly skills = [
     'Angular version 15+',
@@ -111,6 +113,8 @@ export class Homepage {
       const win = this.doc.defaultView;
       if (!win) return;
 
+      this.initializeTheme();
+
       const onScroll = () => this.syncActiveFromScroll();
       win.addEventListener('scroll', onScroll, { passive: true });
       this.destroyRef.onDestroy(() => win.removeEventListener('scroll', onScroll));
@@ -132,6 +136,11 @@ export class Homepage {
     return this.activeNav() === id;
   }
 
+  toggleTheme(): void {
+    const nextTheme = this.theme() === 'dark' ? 'light' : 'dark';
+    this.applyTheme(nextTheme);
+  }
+
   private isNavId(value: string): value is NavSectionId {
     return (this.navSectionIds as readonly string[]).includes(value);
   }
@@ -150,5 +159,27 @@ export class Homepage {
       }
     }
     this.activeNav.set(current);
+  }
+
+  private initializeTheme(): void {
+    const win = this.doc.defaultView;
+    if (!win) return;
+
+    const storedTheme = win.localStorage.getItem(this.themeStorageKey);
+    if (storedTheme === 'dark' || storedTheme === 'light') {
+      this.applyTheme(storedTheme, false);
+      return;
+    }
+
+    const prefersLight = win.matchMedia?.('(prefers-color-scheme: light)').matches ?? false;
+    this.applyTheme(prefersLight ? 'light' : 'dark', false);
+  }
+
+  private applyTheme(theme: 'dark' | 'light', persist = true): void {
+    this.theme.set(theme);
+    this.doc.documentElement.setAttribute('data-theme', theme);
+    if (persist) {
+      this.doc.defaultView?.localStorage.setItem(this.themeStorageKey, theme);
+    }
   }
 }
