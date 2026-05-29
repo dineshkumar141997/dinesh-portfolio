@@ -1,0 +1,170 @@
+<div class="page">
+    <header class="nav">
+      <a class="logo" href="#top" aria-label="Dinesh Kumar">DK</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a
+          href="#about"
+          class="nav-link"
+          [class.nav-link--active]="isActiveNav('about')"
+          [attr.aria-current]="isActiveNav('about') ? 'true' : null"
+          (click)="onNavActivate('about')">About</a>
+        <a
+          href="#skills"
+          class="nav-link"
+          [class.nav-link--active]="isActiveNav('skills')"
+          [attr.aria-current]="isActiveNav('skills') ? 'true' : null"
+          (click)="onNavActivate('skills')">Skills</a>
+        <a
+          href="#projects"
+          class="nav-link"
+          [class.nav-link--active]="isActiveNav('projects')"
+          [attr.aria-current]="isActiveNav('projects') ? 'true' : null"
+          (click)="onNavActivate('projects')">Projects</a>
+        <a
+          href="#contact"
+          class="nav-link"
+          [class.nav-link--active]="isActiveNav('contact')"
+          [attr.aria-current]="isActiveNav('contact') ? 'true' : null"
+          (click)="onNavActivate('contact')">Contact</a>
+      </nav>
+    </header>
+  
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow">Web developer · 3.8+ years</p>
+        <h1 id="hero-title" class="hero-title">
+          Web Developer with expertise in Angular and Ionic interfaces for
+          <em>healthcare &amp; enterprise</em>
+          — responsive, API-driven, production-ready.
+        </h1>
+        <p class="hero-lead">
+          I’m <strong>Dinesh Kumar</strong>, B.E. Mechanical Engineering (Muthayammal Engineering College, 2019).
+          Since July 2022 I’ve built and shipped front-ends at Innowave Healthcare (Madurai) and
+          Mango India Pvt. Ltd., from AngularJS-era code through <strong>Angular 18</strong>.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+      </section>
+  
+      <section id="about" class="section about" aria-labelledby="about-title">
+        <div class="section-header">
+          <h2 id="about-title" class="section-title">About</h2>
+          <p class="section-kicker">Background, experience &amp; how I work</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p class="prose">
+              I focus on <strong>front-end development</strong>: responsive web apps, solid UX, and
+              working with backend teams to integrate REST APIs cleanly. I’m comfortable owning
+              features end-to-end — from Angular Material layouts to Nginx deployment considerations.
+            </p>
+            <p class="prose">
+              I aim to grow with technologies that solve real problems, ship maintainable code, and
+              keep UIs fast and accessible across browsers.
+            </p>
+            <div class="about-education" aria-labelledby="edu-title">
+              <h3 id="edu-title" class="about-subtitle">Academic qualification</h3>
+              <ul class="education-list">
+                <li>
+                  <strong>B.E. Mechanical Engineering</strong> — Muthayammal Engineering College,
+                  Anna University (2019), <span class="muted">CGPA 7.0</span>
+                </li>
+                <li>
+                  <strong>Higher Secondary</strong> — Bharathi Hr. Sec. School, State Board (2015),
+                  <span class="muted">74.96%</span>
+                </li>
+                <li>
+                  <strong>SSLC</strong> — Bharathi Vidyalaya Matric School (2013),
+                  <span class="muted">78.2%</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="about-aside">
+            <h3 class="about-subtitle">Experience highlights</h3>
+            <ul class="highlights">
+              <li>Developed and maintained Angular UIs with cross-browser, responsive delivery.</li>
+              <li>Migrated legacy apps from <strong>AngularJS</strong> to <strong>Angular 18</strong>.</li>
+              <li>Integrated REST APIs; used <strong>Angular Material</strong> for consistent UX.</li>
+              <li>Deployed and tuned apps on <strong>Nginx</strong> for performance and reliability.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+  
+      <section id="skills" class="section skills" aria-labelledby="skills-title">
+        <div class="section-header">
+          <h2 id="skills-title" class="section-title">Skills</h2>
+          <p class="section-kicker">Aligned with my resume — stack I use in production</p>
+        </div>
+        <ul class="skill-pills" role="list">
+          @for (s of skills; track s) {
+            <li>{{ s }}</li>
+          }
+        </ul>
+      </section>
+  
+      <section id="projects" class="section projects" aria-labelledby="projects-title">
+        <div class="section-header">
+          <h2 id="projects-title" class="section-title">Projects</h2>
+          <p class="section-kicker">Professional projects (resume)</p>
+        </div>
+        <div class="project-grid">
+          @for (p of projects; track p.title) {
+            <article class="card">
+              <h3 class="card-title">{{ p.title }}</h3>
+              <p class="card-desc">{{ p.description }}</p>
+              <ul class="card-stack" role="list">
+                @for (t of p.stack; track t) {
+                  <li>{{ t }}</li>
+                }
+              </ul>
+              @if (p.link) {
+                <a class="card-link" [href]="p.link" target="_blank" rel="noreferrer">Open project</a>
+              }
+            </article>
+          }
+        </div>
+      </section>
+  
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="contact-panel">
+          <h2 id="contact-title" class="section-title">Contact</h2>
+          <p class="prose">
+            Open to roles in Web development / Angular development. Reach me on email or phone — same
+            details as on my resume.
+          </p>
+          <dl class="contact-details">
+            <div class="contact-row">
+              <dt>Email</dt>
+              <dd>
+                <a href="mailto:dineshmech621@gmail.com">dineshmech621&#64;gmail.com</a>
+              </dd>
+            </div>
+            <div class="contact-row">
+              <dt>Mobile</dt>
+              <dd><a href="tel:+918778183434">+91 87781 83434</a></dd>
+            </div>
+            <div class="contact-row">
+              <dt>Address</dt>
+              <dd>
+                619, 2nd Street, Nesavalar Colony, Managiri, Karaikudi, Sivagangai (Dt.), Tamil Nadu
+              </dd>
+            </div>
+          </dl>
+          <div class="contact-actions">
+            <a class="btn primary" href="mailto:dineshmech621@gmail.com">Email me</a>
+            <a class="btn ghost" href="tel:+918778183434">Call</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  
+    <footer class="footer">
+      <span>© {{ year }} Dinesh Kumar</span>
+      <span class="footer-note">Built with Angular</span>
+    </footer>
+  </div>
+  
